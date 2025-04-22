@@ -33,8 +33,8 @@ const menuItems = [
   { text: "Solicitations", icon: <Description />, path: "solicitations" },
   { text: "Proposals", icon: <NoteAdd />, path: "proposals" },
   { text: "Document Library", icon: <Folder />, path: "document-library" },
-  { text: "Community", icon: <Group />, path: "community" },
-  { text: "Plans & Billing", icon: <CreditCard />, path: "plans-billing" },
+  // { text: "Community", icon: <Group />, path: "community" },
+  // { text: "Plans & Billing", icon: <CreditCard />, path: "plans-billing" },
 ];
 
 const Sidebar = ({ collapsed, setCollapsed }) => {

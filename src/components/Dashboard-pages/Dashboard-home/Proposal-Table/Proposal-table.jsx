@@ -16,11 +16,31 @@ import {
   FormControl,
   Box,
 } from "@mui/material";
+import { useState } from "react";
+import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const ProposalsTable = () => {
+  const [sortConfig, setSortConfig] = useState({
+    key: "title",
+    direction: "asc",
+  });
+
+  const renderSortIcon = (key) => {
+    if (sortConfig.key !== key) {
+      return <UnfoldMoreIcon sx={{ fontSize: 18, color: "#8f9bb3" }} />;
+    }
+    return sortConfig.direction === "asc" ? (
+      <ExpandLessIcon sx={{ fontSize: 18, color: "#8f9bb3" }} />
+    ) : (
+      <ExpandMoreIcon sx={{ fontSize: 18, color: "#8f9bb3" }} />
+    );
+  };
+
   const rows = [
     {
       title: "Lorem Ipsum is simply dummy text",
@@ -54,15 +74,23 @@ const ProposalsTable = () => {
     },
   ];
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case "In Progress":
-        return "success";
-      case "In Review":
-        return "secondary";
-      default:
-        return "default";
+  const [selectedRows, setSelectedRows] = useState([]);
+  const allChecked = selectedRows.length === rows.length;
+  const isIndeterminate =
+    selectedRows.length > 0 && selectedRows.length < rows.length;
+
+  const handleSelectAll = (e) => {
+    if (e.target.checked) {
+      setSelectedRows(rows.map((_, index) => index));
+    } else {
+      setSelectedRows([]);
     }
+  };
+
+  const handleSelectRow = (index) => {
+    setSelectedRows((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
   };
 
   return (
@@ -80,63 +108,132 @@ const ProposalsTable = () => {
         Proposals
       </Typography>
       <TableContainer>
-        <Table>
+        <Table stickyHeader>
           <TableHead>
             <TableRow>
               <TableCell
-                sx={{ color: "#7f8aad", borderBottom: "1px solid #2c3554" }}
-              />
-              <TableCell
-                sx={{ color: "#7f8aad", borderBottom: "1px solid #2c3554" }}
+                sx={{
+                  color: "#7f8aad",
+                  backgroundColor: "#0B1437",
+                  borderBottom: "1px solid #2c3554",
+                }}
               >
-                Title
+                <Checkbox
+                  indeterminate={isIndeterminate}
+                  checked={allChecked}
+                  onChange={handleSelectAll}
+                  sx={{ color: "#5e6eab" }}
+                />
               </TableCell>
               <TableCell
-                sx={{ color: "#7f8aad", borderBottom: "1px solid #2c3554" }}
+                sx={{
+                  color: "#7f8aad",
+                  backgroundColor: "#0B1437",
+                  borderBottom: "1px solid #2c3554",
+                }}
               >
-                Created At
+                Title {renderSortIcon("title")}
               </TableCell>
               <TableCell
-                sx={{ color: "#7f8aad", borderBottom: "1px solid #2c3554" }}
+                sx={{
+                  color: "#7f8aad",
+                  backgroundColor: "#0B1437",
+                  borderBottom: "1px solid #2c3554",
+                }}
               >
-                Status
+                Created At {renderSortIcon("date")}
               </TableCell>
               <TableCell
-                sx={{ color: "#7f8aad", borderBottom: "1px solid #2c3554" }}
+                sx={{
+                  color: "#7f8aad",
+                  backgroundColor: "#0B1437",
+                  borderBottom: "1px solid #2c3554",
+                }}
+              >
+                Status {renderSortIcon("status")}
+              </TableCell>
+              <TableCell
+                sx={{
+                  color: "#7f8aad",
+                  backgroundColor: "#0B1437",
+                  borderBottom: "1px solid #2c3554",
+                }}
               >
                 File
               </TableCell>
               <TableCell
-                sx={{ color: "#7f8aad", borderBottom: "1px solid #2c3554" }}
+                sx={{
+                  color: "#7f8aad",
+                  backgroundColor: "#0B1437",
+                  borderBottom: "1px solid #2c3554",
+                }}
               >
                 Actions
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, idx) => (
-              <TableRow key={idx} hover>
-                <TableCell>
-                  <Checkbox sx={{ color: "#5e6eab" }} />
+            {rows.map((row, index) => (
+              <TableRow
+                key={index}
+                hover
+                sx={{
+                  "&:hover": {
+                    backgroundColor: "#0A1330",
+                  },
+                }}
+              >
+                <TableCell sx={{ borderBottom: "none" }}>
+                  <Checkbox
+                    checked={selectedRows.includes(index)}
+                    onChange={() => handleSelectRow(index)}
+                    sx={{ color: "#5e6eab" }}
+                  />
                 </TableCell>
-                <TableCell sx={{ color: "#fff" }}>{row.title}</TableCell>
-                <TableCell sx={{ color: "#fff" }}>{row.date}</TableCell>
-                <TableCell>
+                <TableCell sx={{ color: "#fff", border: "none" }}>
+                  {row.title}
+                </TableCell>
+                <TableCell sx={{ color: "#fff", borderBottom: "none" }}>
+                  {row.date}
+                </TableCell>
+                <TableCell sx={{ borderBottom: "none" }}>
                   <Chip
-                    label={row.status}
+                    label={
+                      <Box display="flex" alignItems="center" gap={1}>
+                        <Box
+                          sx={{
+                            width: 6,
+                            height: 6,
+                            borderRadius: "50%",
+                            bgcolor:
+                              row.status === "In Progress"
+                                ? "#00c19e"
+                                : "#c039f7",
+                          }}
+                        />
+                        {row.status}
+                      </Box>
+                    }
                     size="small"
                     sx={{
                       bgcolor:
-                        row.status === "In Progress" ? "#1dc9b7" : "#a93af9",
-                      color: "#fff",
+                        row.status === "In Progress" ? "#003f3b" : "#2c004b",
+                      color:
+                        row.status === "In Progress" ? "#14CA74" : "#EB19CC",
                       fontWeight: 500,
+                      px: 0.1,
+                      borderRadius: "3px",
+                      fontSize: "0.75rem",
                     }}
                   />
                 </TableCell>
-                <TableCell sx={{ color: "#fff" }}>
+                <TableCell sx={{ color: "#fff", borderBottom: "none" }}>
                   <PictureAsPdfIcon sx={{ color: "#fff" }} />
+                  <Typography variant="body2" component="span" ml={1}>
+                    PDF
+                  </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell sx={{ borderBottom: "none" }}>
                   <IconButton size="small" sx={{ color: "#7f8aad" }}>
                     <EditIcon fontSize="small" />
                   </IconButton>
@@ -149,7 +246,6 @@ const ProposalsTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
-
       <Box
         mt={3}
         display="flex"
