@@ -1,7 +1,12 @@
 .App {
   text-align: center;
+  background: black;
 }
-
+#root {
+  background: #000000;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

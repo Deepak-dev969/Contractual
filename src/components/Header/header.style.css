@@ -1,0 +1,172 @@
+#Header {
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0vw 2vw;
+}
+#logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-btns {
+  gap: 1.6rem;
+  display: flex;
+}
+.nav-btns button {
+  font-weight: 100;
+  font-size: 1rem;
+  padding: 0%;
+  color: white;
+  text-transform: capitalize;
+}
+.header-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+#login-btn {
+  border: 1px solid #eb19cc;
+  color: white;
+  font-size: 0.8rem;
+  padding: 10px 25px;
+  border-radius: 52px;
+  text-transform: capitalize;
+}
+#get-started-btn {
+  color: white;
+  text-transform: capitalize;
+  background: linear-gradient(to right, #eb19cc, #14e8dd);
+  padding: 10px 25px;
+  border-radius: 52px;
+  color: white;
+  text-transform: capitalize;
+}
+
+@media screen and (max-width: 1250px) {
+  #logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #logo img {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  #login-btn {
+    border: 1px solid #eb19cc;
+    color: white;
+    font-size: 0.8rem;
+    padding: 10px 25px;
+    border-radius: 52px;
+    text-transform: capitalize;
+  }
+  #get-started-btn {
+    color: white;
+    text-transform: capitalize;
+    background: linear-gradient(to right, #eb19cc, #14e8dd);
+    padding: 10px 25px;
+    border-radius: 52px;
+    color: white;
+    text-transform: capitalize;
+  }
+}
+
+@media screen and (max-width: 1068px) {
+  #Header {
+    height: 10vh;
+  }
+  .nav-btns {
+    gap: 4px;
+    display: flex;
+  }
+  #logo img {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .nav-btns button {
+    padding: 0%;
+    font-size: 12px;
+    gap: 10px;
+  }
+  #login-btn {
+    font-size: 0.6rem;
+    padding: 5px 5px;
+  }
+  #get-started-btn {
+    font-size: 0.6rem;
+    padding: 5px 5px;
+  }
+  .header-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #Header {
+    height: 10vh;
+  }
+  .nav-btns {
+    gap: 4px;
+    display: flex;
+  }
+  #logo img {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .nav-btns button {
+    padding: 0%;
+    font-size: 0.9rem;
+    gap: 10px;
+  }
+  #login-btn {
+    color: black;
+    font-size: 0.6rem;
+    padding: 5px 5px;
+  }
+  #get-started-btn {
+    font-size: 0.6rem;
+    padding: 5px 5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #logo img {
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+  }
+  #get-started-btn {
+    font-size: 0.5rem;
+    padding: 4px 4px;
+  }
+  #login-btn {
+    font-size: 0.5rem;
+    padding: 4px 4px;
+  }
+  .nav-btns button {
+    padding: 0%;
+    font-size: 0.7rem;
+    gap: 10px;
+  }
+  #logo img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+}
